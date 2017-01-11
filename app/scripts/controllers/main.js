@@ -46,17 +46,59 @@ angular.module('metroApp')
         username:$scope.formData.username,
         location:[$scope.formData.longitude,$scope.formData.latitude]
       };
+      var dataQuery = {
+        latitude:parseFloat($scope.formData.latitude),
+        longitude:parseFloat($scope.formData.longitude)
+      }
+      var from = new google.maps.LatLng(parseFloat($scope.formData.latitude),parseFloat($scope.formData.longitude));
+
+      $http.post('/query',dataQuery)
+        .then(function successCall(obj){
+          console.log(obj);
+          var to =new google.maps.LatLng(parseFloat(obj.location[1]),parseFloat(obj.location[0]));
+          $scope.plotPath(from,to);
+        },function errorCall(){
+          console.log('unable to retrieve data');
+        })
+
       console.log(data);
-      $http.post('/users',data)
-          .then(function successCall(){
-            console.log("you are awesome");
-            $scope.formData.username = "";
-            gservice.refresh($scope.formData.latitude, $scope.formData.longitude);
-            $scope.formData.latitude="";
-            $scope.formData.longitude="";
-          },function errorCall(){
-            console.log('fuck you');
-          });
+
+      // $http.post('/users',data)
+      //     .then(function successCall(){
+      //       console.log("you are awesome");
+      //       $scope.formData.username = "";
+      //       gservice.refresh($scope.formData.latitude, $scope.formData.longitude);
+      //       $scope.formData.latitude="";
+      //       $scope.formData.longitude="";
+      //     },function errorCall(){
+      //       console.log('fuck you');
+      //     });
 
     };
+
+    $scope.plotPath = function(from,to){
+      var myOptions = {
+          zoom: 10,
+          center:from,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        // Draw the map
+        var mapObject = new google.maps.Map(document.getElementById("map"), myOptions);
+      var directionsService = new google.maps.DirectionsService();
+      var directionsRequest = {
+        origin:from,
+        destination:to,
+        travelMode: google.maps.DirectionsTravelMode.WALKING
+      };
+      directionsService.route(directionsRequest,function(result,status){
+        if(status=='OK'){
+          new google.maps.DirectionsRenderer({
+                map: mapObject,
+                directions: result
+              });
+        }else{
+          console.log('error puta')
+        }
+      })
+    }
   });
