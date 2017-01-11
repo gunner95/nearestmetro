@@ -6,7 +6,7 @@
     "start": "node server.js",
     "postinstall":"bower cache clean && bower install "
   },
-  "devDependencies": {
+  "dependencies": {
     "autoprefixer-core": "^5.2.1",
     "bower": "^1.8.0",
     "grunt": "^0.4.5",
