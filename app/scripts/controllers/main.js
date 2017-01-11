@@ -55,7 +55,7 @@ angular.module('metroApp')
       $http.post('/query',dataQuery)
         .then(function successCall(obj){
           console.log(obj);
-          var to =new google.maps.LatLng(parseFloat(obj.location[1]),parseFloat(obj.location[0]));
+          var to =new google.maps.LatLng(parseFloat(obj.data[0].location[1]),parseFloat(obj.data[0].location[0]));
           $scope.plotPath(from,to);
         },function errorCall(){
           console.log('unable to retrieve data');
