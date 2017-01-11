@@ -1,12 +1,14 @@
 # metro-app
 
-This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
-version 0.15.1.
+This application is built basically for a person standing at some point, who wants to know which is the nearest metro station that he can take. The full path that he needs to follow is displayed.
 
-## Build & development
+Link: https://nearestmetro.herokuapp.com/#!/
 
-Run `grunt` for building and `grunt serve` for preview.
+App is still in under construction :)
 
-## Testing
+## Tech Stack
 
-Running `grunt test` will run the unit tests with karma.
+Backend: Nodejs,express,MongoDB(Mongoose)
+Frontend: AngularJS(Javascript), HTML, Bootstrap(CSS)
+3rdParty Api: Google Map api
+Hosted on Herokuapp
