@@ -18,6 +18,37 @@ angular.module('metroApp')
             console.log('error in refresh method');
           });
     };
+
+
+    googleMapService.plotPath = function(from,to,transport){
+      var myOptions = {
+          zoom: 10,
+          center:from,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        // Draw the map
+      var mapObject = new google.maps.Map(document.getElementById("map"), myOptions);
+      var directionsService = new google.maps.DirectionsService();
+      var transMode=google.maps.DirectionsTravelMode.WALKING;
+      if(transport=="DRIVING"){
+        transMode = google.maps.DirectionsTravelMode.DRIVING;
+      }
+      var directionsRequest = {
+        origin:from,
+        destination:to,
+        travelMode: transMode
+      };
+      directionsService.route(directionsRequest,function(result,status){
+        if(status==='OK'){
+          new google.maps.DirectionsRenderer({
+                map: mapObject,
+                directions: result
+              });
+        }else{
+          console.log('error puta');
+        }
+      });
+    };
     // ------------------
     //inner private functions
     var convertToMapPoints = function(data){

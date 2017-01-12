@@ -24,6 +24,13 @@
                 <label for="longitude">longitude</label>
                 <input type="text" class="form-control" ng-model="formData.longitude" />
               </div>
+              <label>Mode of Transport</label><br />
+              <div class="radio">
+              <label><input type="radio" ng-model="formData.transport" value="WALKING">Walking</label>
+            </div>
+            <div class="radio">
+              <label><input type="radio" ng-model="formData.transport" value="DRIVING">Driving</label>
+            </div>
               <input type="button" class="btn btn-danger btn-block" value = "submit" ng-click="submit()"/>
             </div>
           </div>

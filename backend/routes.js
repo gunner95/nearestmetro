@@ -38,6 +38,7 @@ module.exports = function(app){
         coordinates:[long,lat]
       },
       spherical:true
+      // maxDistance:0.0015696123
     }).limit(1);
     query.exec(function(err,users){
       if(err){

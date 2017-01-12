@@ -8,9 +8,10 @@
  * Controller of the metroAppApp
  */
 angular.module('metroApp')
-  .controller('MainCtrl', function ($scope,$http,geolocation,gservice) {
+  .controller('MainCtrl', function ($scope,$http,geolocation,gservice,$window) {
     $scope.formData={};
     $scope.data=[];
+    $scope.formData.transport="WALKING"
     // $scope.initMap=function() {
     //    // Create a map object and specify the DOM element for display.
     //    var map = new google.maps.Map(document.getElementById('map'), {
@@ -55,8 +56,12 @@ angular.module('metroApp')
       $http.post('/query',dataQuery)
         .then(function successCall(obj){
           console.log(obj);
-          var to =new google.maps.LatLng(parseFloat(obj.data[0].location[1]),parseFloat(obj.data[0].location[0]));
-          $scope.plotPath(from,to);
+          if(obj.data.length==0){
+            $window.alert('too far from any metro station');
+          }else{
+            var to =new google.maps.LatLng(parseFloat(obj.data[0].location[1]),parseFloat(obj.data[0].location[0]));
+            gservice.plotPath(from,to,$scope.formData.transport);
+          }
         },function errorCall(){
           console.log('unable to retrieve data');
         })
@@ -76,29 +81,4 @@ angular.module('metroApp')
 
     };
 
-    $scope.plotPath = function(from,to){
-      var myOptions = {
-          zoom: 10,
-          center:from,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        // Draw the map
-        var mapObject = new google.maps.Map(document.getElementById("map"), myOptions);
-      var directionsService = new google.maps.DirectionsService();
-      var directionsRequest = {
-        origin:from,
-        destination:to,
-        travelMode: google.maps.DirectionsTravelMode.WALKING
-      };
-      directionsService.route(directionsRequest,function(result,status){
-        if(status=='OK'){
-          new google.maps.DirectionsRenderer({
-                map: mapObject,
-                directions: result
-              });
-        }else{
-          console.log('error puta')
-        }
-      })
-    }
   });
