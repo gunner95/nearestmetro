@@ -1,6 +1,6 @@
 
 angular.module('metroApp')
-  .factory('gservice',function($http){
+  .factory('gservice',function($http,$q){
     var googleMapService ={};
     var locations =[]; //array of locations received from the api calls
     var selectedLat = 28.6139;
@@ -10,9 +10,15 @@ angular.module('metroApp')
         locations=[];
         selectedLong=longitude;
         selectedLat=latitude;
-        $http.get('/users')
+        var user1 = $http.get('/users'),
+            user2 = $http.get('/users2');
+        $q.all([user1,user2])
           .then(function successCall(data){
-            locations = convertToMapPoints(data.data);
+            var mainArray = data[0].data.concat(data[1].data);
+            // for(var j=0;j<data[1].data.length;j++){
+            //   mainArray.push(data[1].data[j]);
+            // }
+            locations = convertToMapPoints(mainArray);
             initialize(latitude,longitude);
           },function errorCall(){
             console.log('error in refresh method');
@@ -53,7 +59,8 @@ angular.module('metroApp')
     //inner private functions
     var convertToMapPoints = function(data){
       var locations=[];
-      for(var i=0;i<data.length;i++){
+      var mainData = data;
+      for(var i=0;i<mainData.length;i++){
         var user = data[i];
         //pop up window
         var contentString =

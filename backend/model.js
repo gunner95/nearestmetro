@@ -12,4 +12,4 @@ var UserSchema = new Schema({
 UserSchema.index({location:'2dsphere'});
 
 // Exports the UserSchema for use elsewhere. Sets the MongoDB collection to be used as: user
-module.exports = mongoose.model('User',UserSchema);
+module.exports = mongoose.model('user',UserSchema);
