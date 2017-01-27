@@ -35,6 +35,7 @@ angular.module('metroApp')
         // Draw the map
       var mapObject = new google.maps.Map(document.getElementById("map"), myOptions);
       var directionsService = new google.maps.DirectionsService();
+      var distanceService = new google.maps.DistanceMatrixService();
       var transMode=google.maps.DirectionsTravelMode.WALKING;
       if(transport=="DRIVING"){
         transMode = google.maps.DirectionsTravelMode.DRIVING;
@@ -50,10 +51,21 @@ angular.module('metroApp')
                 map: mapObject,
                 directions: result
               });
-        }else{
+          }else{
           console.log('error puta');
         }
       });
+      distanceService.getDistanceMatrix({
+        origins:[from],
+        destinations:[to],
+        travelMode:transMode,
+      },callback);
+      function callback(response,status){
+        console.log(response);
+        googleMapService.distance = response.rows[0].elements[0].distance;
+        googleMapService.timeTaken = response.rows[0].elements[0].duration;
+
+      }
     };
     // ------------------
     //inner private functions

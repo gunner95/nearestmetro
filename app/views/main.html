@@ -4,6 +4,9 @@
     <div class="container-fluid">
       <div class="row mainRow" >
         <div class="col-md-8">
+            <h3 ng-if="timeTaken!=undefined">Time to destination is {{timeTaken}} and distance left is {{distance}}</h3>
+        </div>
+        <div class="col-md-8">
           <div id="map"></div>
         </div>
         <div class="col-md-4">

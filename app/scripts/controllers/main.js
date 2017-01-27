@@ -8,7 +8,7 @@
  * Controller of the metroAppApp
  */
 angular.module('metroApp')
-  .controller('MainCtrl', function ($scope,$http,geolocation,gservice,$window) {
+  .controller('MainCtrl', function ($scope,$http,geolocation,gservice,$window,$timeout) {
     $scope.formData={};
     $scope.data=[];
     $scope.formData.transport="WALKING"
@@ -61,6 +61,12 @@ angular.module('metroApp')
           }else{
             var to =new google.maps.LatLng(parseFloat(obj.data[0].location[1]),parseFloat(obj.data[0].location[0]));
             gservice.plotPath(from,to,$scope.formData.transport);
+            $timeout(function () {
+              if(gservice.distance!=undefined){
+              $scope.distance = gservice.distance.text;
+              $scope.timeTaken= gservice.timeTaken.text;
+            }
+          }, 500);
           }
         },function errorCall(){
           console.log('unable to retrieve data');
