@@ -11,7 +11,8 @@
 angular
   .module('metroApp', [
     'ngRoute',
-    'geolocation'
+    'geolocation',
+    'ngCordova'
   ])
   .config(function ($routeProvider) {
     $routeProvider

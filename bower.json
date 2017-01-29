@@ -5,7 +5,8 @@
     "angular": "^1.4.0",
     "bootstrap": "^3.2.0",
     "angular-route": "^1.4.0",
-    "angularjs-geolocation": "^0.1.1"
+    "angularjs-geolocation": "^0.1.1",
+    "ngCordova": "^0.1.27-alpha"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"

@@ -25,6 +25,7 @@ module.exports = function(config) {
       'bower_components/bootstrap/dist/js/bootstrap.js',
       'bower_components/angular-route/angular-route.js',
       'bower_components/angularjs-geolocation/src/geolocation.js',
+      'bower_components/ngCordova/dist/ng-cordova.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

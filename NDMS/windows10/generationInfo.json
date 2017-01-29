@@ -1,0 +1,10 @@
+{
+    "generationTool": "manifoldjs",
+    "generationToolVersion": "0.7.1",
+    "platformId": "windows10",
+    "platformPackage": "manifoldjs-windows10",
+    "platformVersion": "0.1.6",
+    "generatedFrom": "CLI",
+    "generationDate": "2017-01-28 20:33:16 Z",
+    "generatedURL": "https://nearestmetro.herokuapp.com/manifest.json"
+}

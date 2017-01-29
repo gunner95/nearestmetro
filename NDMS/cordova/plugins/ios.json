@@ -1,0 +1,29 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-hostedwebapp": {
+            "PACKAGE_NAME": "com.herokuapp.nearestmetro"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.herokuapp.nearestmetro"
+        },
+        "cordova-plugin-geolocation": {
+            "GEOLOCATION_USAGE_DESCRIPTION": " ",
+            "PACKAGE_NAME": "com.herokuapp.nearestmetro"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.herokuapp.nearestmetro"
+        },
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.herokuapp.nearestmetro"
+        }
+    }
+}

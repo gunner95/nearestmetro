@@ -8,7 +8,7 @@
  * Controller of the metroAppApp
  */
 angular.module('metroApp')
-  .controller('MainCtrl', function ($scope,$http,geolocation,gservice,$window,$timeout) {
+  .controller('MainCtrl', function ($scope,$http,geolocation,gservice,$window,$timeout,$cordovaGeolocation) {
     $scope.formData={};
     $scope.data=[];
     $scope.formData.transport="WALKING"
@@ -21,24 +21,34 @@ angular.module('metroApp')
     //    });
     //  };
     // $scope.initMap();
+    // $scope.geoL = function(){
+    //   geolocation.getLocation().then(function(data){
+    //
+    // // Set the latitude and longitude equal to the HTML5 coordinates
+    //   // coords = {lat:data.coords.latitude, long:data.coords.longitude};
+    //
+    //   // Display coordinates in location textboxes rounded to three decimal points
+    //   $scope.formData.longitude = parseFloat(data.coords.longitude).toFixed(3);
+    //   $scope.formData.latitude = parseFloat(data.coords.latitude).toFixed(3);
+    //
+    //   // Display message confirming that the coordinates verified.
+    //   $scope.formData.htmlverified = "Yep (Thanks for giving us real data!)";
+    //
+    //   gservice.refresh($scope.formData.latitude, $scope.formData.longitude);
+    //
+    // },function error() {
+    //   console.log('error');
+    // });
+    // };
     $scope.geoL = function(){
-      geolocation.getLocation().then(function(data){
-
-    // Set the latitude and longitude equal to the HTML5 coordinates
-      // coords = {lat:data.coords.latitude, long:data.coords.longitude};
-
-      // Display coordinates in location textboxes rounded to three decimal points
-      $scope.formData.longitude = parseFloat(data.coords.longitude).toFixed(3);
-      $scope.formData.latitude = parseFloat(data.coords.latitude).toFixed(3);
-
-      // Display message confirming that the coordinates verified.
-      $scope.formData.htmlverified = "Yep (Thanks for giving us real data!)";
-
-      gservice.refresh($scope.formData.latitude, $scope.formData.longitude);
-
-    },function error() {
-      console.log('error');
-    });
+      navigator.geolocation.getCurrentPosition(function(data){
+        $scope.formData.longitude = parseFloat(data.coords.longitude).toFixed(3);
+        $scope.formData.latitude = parseFloat(data.coords.latitude).toFixed(3);
+        $scope.formData.htmlverified = "Yep (Thanks for giving us real data!)";
+        gservice.refresh($scope.formData.latitude, $scope.formData.longitude);
+      },function(error){
+        console.log('error in cordova geolocation');
+      });
     };
     $scope.geoL();
     $scope.submit = function(){

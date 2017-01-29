@@ -1,0 +1,28 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-hostedwebapp": {
+            "PACKAGE_NAME": "NDMS"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "NDMS"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "NDMS"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "NDMS"
+        },
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "NDMS"
+        }
+    }
+}

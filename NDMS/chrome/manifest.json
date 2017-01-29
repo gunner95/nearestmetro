@@ -1,0 +1,14 @@
+{
+    "manifest_version": 2,
+    "name": "Nearest Delhi Metro",
+    "version": "0.0.1",
+    "app": {
+        "launch": {
+            "web_url": "https://nearestmetro.herokuapp.com/#!/"
+        }
+    },
+    "icons": {
+        "64": "/wikipedia/commons/thumb/6/65/Delhi_Metro_logo.svg/1000px-Delhi_Metro_logo.svg.png",
+        "128": "128x128.png"
+    }
+}
