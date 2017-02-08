@@ -1,9 +1,0 @@
-{
-    "name": "NDMS",
-    "description": "Nearest Delhi Metro",
-    "launch_path": "/",
-    "icons": {
-        "64": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Delhi_Metro_logo.svg/1000px-Delhi_Metro_logo.svg.png",
-        "128": "128x128.png"
-    }
-}
