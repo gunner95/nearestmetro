@@ -17,7 +17,7 @@ mongoose.connect('mongodb://pratyush1995:chunmun1998@ds159988.mlab.com:59988/met
 
 
 // Logging and Parsing
-app.use(express.static(__dirname + '/app'));                 // sets the static files location to public
+app.use(express.static(__dirname + '/dist'));                 // sets the static files location to public
 app.use('/bower_components',  express.static(__dirname + '/bower_components')); // Use BowerComponents
 app.use(morgan('dev'));                                         // log with Morgan
 app.use(bodyParser.json());                                     // parse application/json
