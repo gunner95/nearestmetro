@@ -2,10 +2,10 @@
 
 /**
  * @ngdoc function
- * @name metroAppApp.controller:MainCtrl
+ * @name metroApp.controller:MainCtrl
  * @description
  * # MainCtrl
- * Controller of the metroAppApp
+ * Controller of the metroApp
  */
 angular.module('metroApp')
   .controller('MainCtrl', function ($scope,$http,geolocation,gservice,$window,$timeout,$cordovaGeolocation) {

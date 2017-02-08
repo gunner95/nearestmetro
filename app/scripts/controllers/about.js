@@ -2,10 +2,10 @@
 
 /**
  * @ngdoc function
- * @name metroAppApp.controller:AboutCtrl
+ * @name metroApp.controller:AboutCtrl
  * @description
  * # AboutCtrl
- * Controller of the metroAppApp
+ * Controller of the metroApp
  */
 angular.module('metroApp')
   .controller('AboutCtrl', function () {

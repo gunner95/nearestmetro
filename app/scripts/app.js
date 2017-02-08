@@ -2,9 +2,9 @@
 
 /**
  * @ngdoc overview
- * @name metroAppApp
+ * @name metroApp
  * @description
- * # metroAppApp
+ * # metroApp
  *
  * Main module of the application.
  */
