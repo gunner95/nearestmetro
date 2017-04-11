@@ -41,6 +41,7 @@
     "method-override": "~2.1.2",
     "mongoose": "~4.1.0",
     "morgan": "~1.2.2",
+    "newrelic": "^1.38.2",
     "time-grunt": "^1.0.0"
   },
   "engines": {
