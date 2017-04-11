@@ -1,5 +1,6 @@
 // Dependencies
 // -----------------------------------------------------
+require('newrelic');
 var compression     = require('compression');
 var express         = require('express');
 var mongoose        = require('mongoose');
