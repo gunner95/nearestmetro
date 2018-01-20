@@ -51,6 +51,21 @@ angular.module('metroApp')
       });
     };
     $scope.geoL();
+    $scope.submitWrapper = function(){
+      if($scope.formData.address){
+        gservice.getCoordinates($scope.formData.address)
+          .then(function successCall(data){
+            $scope.formData.longitude = data.lng
+            $scope.formData.latitude = data.lat
+            $scope.submit()
+          },function errorCall(){
+
+          })
+      }else{
+      $scope.submit()        
+      }
+    }
+
     $scope.submit = function(){
       console.log($scope.formData);
       var data={
@@ -70,13 +85,14 @@ angular.module('metroApp')
             $window.alert('too far from any metro station');
           }else{
             var to =new google.maps.LatLng(parseFloat(obj.data[0].location[1]),parseFloat(obj.data[0].location[0]));
-            gservice.plotPath(from,to,$scope.formData.transport);
-            $timeout(function () {
-              if(gservice.distance!=undefined){
-              $scope.distance = gservice.distance.text;
-              $scope.timeTaken= gservice.timeTaken.text;
-            }
-          }, 500);
+            gservice.plotPath(from,to,$scope.formData.transport).then(function success(){
+                  console.log('updating distance and time!')
+                  if(gservice.distance!=undefined){
+                  $scope.distance = gservice.distance.text;
+                  $scope.timeTaken= gservice.timeTaken.text;
+                }
+            })
+          
           }
         },function errorCall(){
           console.log('unable to retrieve data');

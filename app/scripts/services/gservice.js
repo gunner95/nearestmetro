@@ -25,8 +25,25 @@ angular.module('metroApp')
           });
     };
 
+    googleMapService.getCoordinates = function(address){
+      var deferred = $q.defer()
+      var geocoder = new google.maps.Geocoder()
+      geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == 'OK') {
+        var coordinates = {"lng":results[0].geometry.location.lng(),"lat":results[0].geometry.location.lat()}
+        deferred.resolve(coordinates)
+      } else {
+        deferred.reject()
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+      return deferred.promise
+    }
 
     googleMapService.plotPath = function(from,to,transport){
+      var deferred1 = $q.defer()
+      var deferred2 = $q.defer()
+      var deferred3 = $q.defer()
       var myOptions = {
           zoom: 10,
           center:from,
@@ -51,7 +68,9 @@ angular.module('metroApp')
                 map: mapObject,
                 directions: result
               });
+          deferred1.resolve()
           }else{
+          deferred1.reject()  
           console.log('error puta');
         }
       });
@@ -64,8 +83,15 @@ angular.module('metroApp')
         console.log(response);
         googleMapService.distance = response.rows[0].elements[0].distance;
         googleMapService.timeTaken = response.rows[0].elements[0].duration;
-
+        deferred2.resolve()
       }
+      $q.all([deferred1.promise,deferred2.promise]).then(function successful(){
+        console.log('all promise resolved')
+        deferred3.resolve()
+      },function error(){
+        deferred3.reject()
+      })
+      return deferred3.promise
     };
     // ------------------
     //inner private functions
